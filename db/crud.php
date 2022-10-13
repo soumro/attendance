@@ -21,7 +21,7 @@
         $stmt->bindparam(':email',$email);
         $stmt->bindparam(':contact',$contact);
         $stmt->bindparam(':speciality',$speciality);
-        echo $sql;
+        // echo $sql;
         $stmt->execute();
         return true;
 
@@ -46,7 +46,7 @@
       $stmt->bindparam(':email',$email);
       $stmt->bindparam(':contact',$contact);
       $stmt->bindparam(':speciality',$speciality);
-      echo '$stmt';
+      // echo '$stmt';
       // execute statement
       $stmt->execute();
       return true;
