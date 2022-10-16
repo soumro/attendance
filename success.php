@@ -16,11 +16,19 @@ if(isset($_POST['submit'])){
   $phone = $_POST['phone'];
   $speciality = $_POST['speciality'];
   
+
+  $orig_file = $_FILES["avatar"]["tmp_name"];
+  $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+  $target_dir = 'uploads/';
+  $destination = "$target_dir$phone.$ext";
+  move_uploaded_file($orig_file,$destination);
+  //exit();
+  
   //call function to insert and track if sucess or note
-  $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email, $phone, $speciality);
+  $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email, $phone, $speciality,$destination,$destination);
 
   if($isSuccess){
-    sendEmail::SendMail('ashrafsoomro@gmail.com','Welcome to IT Conference','Youa hAve been Successfully registered');
+    //sendEmail::SendMail('ashrafsoomro@gmail.com','Welcome to IT Conference','Youa hAve been Successfully registered');
     // echo '<h1 class="text-center text-success">You have been Registered!</h1>';
     include 'includes/successmessage.php';
   }else{
@@ -58,6 +66,7 @@ if(isset($_POST['submit'])){
 </div> -->
 
 <div class="card" style="width: 18rem;">
+<img src="<?php echo $destination ?>" class="card-img-top" alt="">
   <div class="card-body">
     <h5 class="card-title">
       <?php echo $_POST['firstname'] . ' ' . $_POST['lastname']; ?>
