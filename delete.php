@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/auth_check.php';
 require_once 'db/conn.php';
 // Get Values form Post Operation
 if(!$_GET['id']){

@@ -5,6 +5,7 @@ $title = 'Success';
 
 require_once 'includes/header.php';
 require_once 'db/conn.php';
+require_once 'sendemail.php';
 
 if(isset($_POST['submit'])){
   //Execute Value from _POST Array
@@ -19,6 +20,7 @@ if(isset($_POST['submit'])){
   $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email, $phone, $speciality);
 
   if($isSuccess){
+    sendEmail::SendMail('ashrafsoomro@gmail.com','Welcome to IT Conference','Youa hAve been Successfully registered');
     // echo '<h1 class="text-center text-success">You have been Registered!</h1>';
     include 'includes/successmessage.php';
   }else{
